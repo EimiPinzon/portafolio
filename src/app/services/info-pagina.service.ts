@@ -1,26 +1,26 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import { InfoPagina } from '../interfaces/info-pagina.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class InfoPaginaService {
+export class InfoPaginaService{
 
-  info: any = {};
+  info: InfoPagina = {};
   cargada = false;
 
-  constructor(private http: HttpClient) { 
-    //console.log('Servicio de infoPagina listo');
+  constructor(private http: HttpClient) {
 
-    //leer archivo json
+    console.log('Servicio de página listo');
+
+    //leer el archivo json
     this.http.get('assets/data/data-pagina.json')
-      .subscribe(resp => {
+      .subscribe((resp:InfoPagina) => {
 
         this.cargada = true;
-        this.info = resp; 
-        console.log( resp);
-
+        this.info = resp;
+        console.log(resp);
       });
-
   }
 }
